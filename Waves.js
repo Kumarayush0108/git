@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Spotify Configuration with dynamic redirect URI
     const SPOTIFY_CONFIG = {
         clientId: '43c331f189c8497aabbfcafcfa68b084', // Your Spotify Client ID
-        redirectUri: 'https://mymusic.com', // Dynamic redirect URI
+        redirectUri: getRedirectUri(), // Dynamic redirect URI
         scopes: [
             'streaming',
             'user-read-email',
@@ -991,4 +991,5 @@ SETUP INSTRUCTIONS:
    - Internet connection for Spotify API
 
 The redirect URI is dynamically generated based on your domain!
+
 */
