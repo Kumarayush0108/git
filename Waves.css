@@ -1,0 +1,648 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: auto;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    transition: opacity 0.5s ease-out;
+}
+
+.intro-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #8B0000;
+    margin-bottom: 40px;
+    transition: transform 1s ease;
+}
+
+.logo.moved {
+    transform: translateY(-10vh);
+}
+
+.start-btn {
+    position: relative;
+    width: 200px;
+    height: 73px;
+    border: none;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    transform: translateY(8px);
+}
+
+.start-btn:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 0 0 0 #8B0000;
+    transition: all 2s ease;
+}
+
+.start-btn:hover:after {
+    box-shadow: 0px -13px 56px 12px #FF0000;
+}
+
+.start-btn span {
+    position: absolute;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 100;
+    font-family: 'Montserrat', sans-serif;
+    left: 50%;
+    top: 39%;
+    letter-spacing: 3px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    transition: all 3s ease;
+}
+
+.start-btn:hover span {
+    color: #000000;
+}
+
+.start-btn:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: #8B0000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease;
+}
+
+.start-btn:hover:before {
+    width: 100%;
+    background-color: #FF0000;
+}
+
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-btn {
+    padding: 10px 15px;
+    background: #b53636;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-btn:hover {
+    background: #a15d5d;
+}
+
+
+.player-wrapper {
+    display: flex;
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    top: -70vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.player-wrapper.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.album-sidebar {
+    width: 200px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 20px 0 0 20px;
+    padding: 20px;
+    height: fit-content;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.album-sidebar h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #FF0000;
+    margin-bottom: 15px;
+}
+
+.album-list {
+    list-style: none;
+}
+
+.album-list li {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.album-list li:hover {
+    background: rgba(139, 0, 0, 0.2);
+}
+
+.album-list li.active {
+    background: rgba(139, 0, 0, 0.4);
+    border-left: 4px solid #FF0000;
+}
+
+.player-container {
+    flex: 1;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+}
+
+.player-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.music-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.album-art {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    border: 3px solid #8B0000;
+}
+
+.album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.track-info {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.track-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #fff;
+}
+
+.track-info p {
+    font-size: 16px;
+    color: #8B0000;
+}
+
+.progress-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #333333;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background: #FF0000;
+    border-radius: 3px;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888888;
+    margin-top: 5px;
+}
+
+.listener-count {
+    font-size: 14px;
+    color: #FF0000;
+    text-align: center;
+    margin: 15px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.control-btn:hover {
+    background: rgba(139, 0, 0, 0.3);
+}
+
+.play-pause {
+    width: 60px;
+    height: 60px;
+    background: #8B0000;
+}
+
+.play-pause:hover {
+    background: #FF0000;
+}
+
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-container i {
+    color: #8B0000;
+}
+
+#volumeSlider {
+    width: 100px;
+    height: 4px;
+    background: #333333;
+    border-radius: 2px;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    background: #FF0000;
+    border-radius: 50%;
+}
+
+.playlist-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.playlist-container h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #8B0000;
+    margin-bottom: 10px;
+}
+
+.playlist {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.playlist li {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.playlist li:hover {
+    background: rgba(139, 0, 0, 0.2);
+}
+
+.playlist li.active {
+    background: rgba(139, 0, 0, 0.4);
+    border-left: 4px solid #FF0000;
+}
+
+/* Social Card Styles */
+.social-card {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: lightgrey;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 1s ease-in-out;
+    border: 2px solid rgb(255, 255, 255);
+    margin: 20px auto 0;
+}
+
+.social-card .background {
+    position: absolute;
+    inset: 0;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+.social-card .social-logo {
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    transition: all 0.6s ease-in-out;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 3px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.social-card .icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.social-card .svg {
+    fill: rgba(255, 255, 255, 0.797);
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.social-card .box {
+    position: absolute;
+    padding: 10px;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.389);
+    border-top: 2px solid rgb(255, 255, 255);
+    border-right: 1px solid white;
+    border-radius: 10% 13% 42% 0%/10% 12% 75% 0%;
+    box-shadow: rgba(100, 100, 111, 0.364) -7px 7px 29px 0px;
+    transform-origin: bottom left;
+    transition: all 1s ease-in-out;
+}
+
+.social-card .box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.social-card .box:hover .svg {
+    fill: white;
+}
+
+.social-card .box1 {
+    width: 70%;
+    height: 70%;
+    bottom: -70%;
+    left: -70%;
+}
+
+.social-card .box1::before {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #ff53d4 60%, #62c2fe 90%);
+}
+
+.social-card .box1:hover::before {
+    opacity: 1;
+}
+
+.social-card .box1:hover .icon .svg {
+    filter: drop-shadow(0 0 5px white);
+}
+
+.social-card .box2 {
+    width: 50%;
+    height: 50%;
+    bottom: -50%;
+    left: -50%;
+    transition-delay: 0.2s;
+}
+
+.social-card .box2::before {
+    background: radial-gradient(circle at 30% 107%, #0c139a 0%, #244ece 90%);
+}
+
+.social-card .box2:hover::before {
+    opacity: 1;
+}
+
+.social-card .box2:hover .icon .svg {
+    filter: drop-shadow(0 0 5px white);
+}
+
+.social-card .box3 {
+    width: 30%;
+    height: 30%;
+    bottom: -30%;
+    left: -30%;
+    transition-delay: 0.4s;
+}
+
+.social-card .box3::before {
+    background: radial-gradient(circle at 30% 107%, #ffffff 0%, #140246 90%);
+}
+
+.social-card .box3:hover::before {
+    opacity: 1;
+}
+
+.social-card .box3:hover .icon .svg {
+    filter: drop-shadow(0 0 5px rgb(242, 238, 238));
+}
+
+.social-card:hover {
+    transform: scale(1.1);
+}
+
+.social-card:hover .box {
+    bottom: -1px;
+    left: -1px;
+}
+
+.social-card:hover .social-logo {
+    transform: translate(70px, -52px);
+    letter-spacing: 0px;
+}
+
+.social-card .social-listener-count {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: all 0.5s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.social-card:hover .social-listener-count {
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.update-card {
+    width: 200px; /* Smaller width for a sidebar feel */
+    height: 150px; /* Compact height */
+    background: #000000;
+    position: fixed;
+    top: 20px; /* Near the top */
+    right: 20px; /* On the right side */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px; /* Smaller radius for a compact look */
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+}
+
+.update-card h2 {
+    z-index: 1;
+    color: #FF0000;
+    font-size: 1.2em; /* Smaller heading */
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.update-card p {
+    z-index: 1;
+    color: #ffffff;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 0 10px;
+    margin: 5px 0;
+}
+
+.update-card a.update-link {
+    z-index: 1;
+    color: #000000;
+    background: #FF0000;
+    padding: 5px 10px; /* Smaller button */
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.update-card a.update-link:hover {
+    background: #8B0000;
+    color: #ffffff;
+}
+
+.update-card::before {
+    content: '';
+    position: absolute;
+    width: 80px; /* Adjusted for smaller size */
+    background-image: linear-gradient(180deg, #FF0000, #8B0000);
+    height: 140%;
+    animation: rotBGimg 4s linear infinite;
+    transition: all 0.2s linear;
+}
+
+.update-card::after {
+    content: '';
+    position: absolute;
+    background: #000000;
+    inset: 3px; /* Thinner border for compactness */
+    border-radius: 7px; /* Matches smaller outer radius */
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo { width: 150px; height: 150px; }
+    .logo.moved { transform: translateY(-10vh); }
+    .start-btn { width: 150px; height: 60px; }
+    .start-btn span { font-size: 12px; }
+    .player-wrapper { width: 95%; flex-direction: column; }
+    .album-sidebar { width: 100%; border-radius: 20px 20px 0 0; max-height: 200px; }
+    .player-container { border-radius: 0 0 20px 20px; padding: 15px; }
+    .album-art { width: 200px; height: 200px; }
+    .track-info h2 { font-size: 20px; }
+    .control-btn { width: 40px; height: 40px; }
+    .play-pause { width: 50px; height: 50px; }
+    .social-card { width: 180px; height: 180px; }
+    .update-card {
+        width: 150px; /* Even smaller on mobile */
+        height: 120px;
+        right: 10px;
+        top: 10px;
+    }
+    .update-card h2 {
+        font-size: 1em;
+    }
+    .update-card p {
+        font-size: 0.8em;
+        padding: 0 8px;
+    }
+    .update-card a.update-link {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+}
